@@ -1,0 +1,92 @@
+import React, { useState } from 'react';
+import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
+import { trackExternalLinkClick } from '../utils/tracking';
+
+const LegislativeWork = () => {
+  const [expandedCard, setExpandedCard] = useState<number | null>(null);
+
+  const projects = [
+    {
+      id: 1,
+      title: "Empresas y Derechos Humanos",
+      subtitle: "Empresas responsables, comunidades protegidas",
+      description: "Este proyecto de ley busca que las empresas medianas y grandes en Chile respeten los derechos humanos en todas sus operaciones. ¿Cómo? Obligándolas a identificar, prevenir y reparar los impactos que puedan causar en las personas y comunidades, desde daños ambientales hasta conflictos con pueblos originarios. Con esta iniciativa avanzamos hacia un país donde la actividad económica se desarrolle con transparencia, justicia y respeto por la dignidad de todas y todos",
+      link: "https://camara.cl/legislacion/ProyectosDeLey/tramitacion.aspx?prmID=18160&prmBOLETIN=17520-17"
+    },
+    {
+      id: 2,
+      title: "Ley Dalgi",
+      subtitle: "Reconocimiento a los perros de asistencia psiquiátrica",
+      description: "Hoy en Chile la ley solo reconoce a los perros guía y de asistencia para discapacidad física, dejando fuera a los perros de asistencia psiquiátrica, que son un apoyo vital para muchas personas. La Ley Dalgi busca corregir esa exclusión, reconociendo a los perros de asistencia psiquiátrica dentro de la legislación sobre discapacidad. Con esto se asegura igualdad en el acceso a derechos y servicios, combatiendo la discriminación y avanzando hacia una sociedad más inclusiva, justa y que reconozca la salud mental como parte fundamental del bienestar",
+      link: "https://camara.cl/legislacion/ProyectosDeLey/tramitacion.aspx?prmID=16192&prmBOLETIN=15662-11"
+    }
+  ];
+
+  const handleExternalLinkClick = (url: string, title: string) => {
+    trackExternalLinkClick(url, `legislative_work_${title.toLowerCase().replace(/ /g, '_')}`);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  };
+
+  const toggleCard = (id: number) => {
+    setExpandedCard(expandedCard === id ? null : id);
+  };
+
+  return (
+    <section id="legislative-work" className="py-16 bg-gray-50">
+      <div className="container mx-auto px-4">
+        <h2 className="text-4xl font-bold text-center mb-12">Trabajo Legislativo</h2>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <div 
+              key={project.id}
+              className="bg-white rounded-lg shadow-lg overflow-hidden transition-all duration-300"
+            >
+              <div 
+                className="p-6 cursor-pointer"
+                onClick={() => toggleCard(project.id)}
+              >
+                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+                <p className="text-gray-600 font-medium mb-4">{project.subtitle}</p>
+                
+                <div className="flex items-center justify-between">
+                  <button
+                    className="text-blue-600 flex items-center gap-2 hover:text-blue-800"
+                    aria-expanded={expandedCard === project.id}
+                  >
+                    {expandedCard === project.id ? (
+                      <>
+                        <span>Ver menos</span>
+                        <ChevronUp className="h-5 w-5" />
+                      </>
+                    ) : (
+                      <>
+                        <span>Ver más</span>
+                        <ChevronDown className="h-5 w-5" />
+                      </>
+                    )}
+                  </button>
+                </div>
+              </div>
+
+              {expandedCard === project.id && (
+                <div className="px-6 pb-6 animate-fadeIn">
+                  <p className="text-gray-700 mb-4">{project.description}</p>
+                  <button
+                    onClick={() => handleExternalLinkClick(project.link, project.title)}
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800"
+                  >
+                    <span>Lee el proyecto completo</span>
+                    <ExternalLink className="h-4 w-4" />
+                  </button>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default LegislativeWork;
