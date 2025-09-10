@@ -1,7 +1,13 @@
-import React from 'react';
-import { Calendar, Award, Users, Shield, Heart, Star, Flag } from 'lucide-react';
+import React, { useState } from 'react';
+import { Calendar, Award, Users, Shield, Heart, Flag, ChevronDown, Star } from 'lucide-react';
 
 const Timeline = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleSection = () => {
+    setIsExpanded(prev => !prev);
+  };
+
   const timelineEvents = [
     {
       year: '2022',
@@ -48,106 +54,120 @@ const Timeline = () => {
   ];
 
   return (
-    <section id="trayectoria" className="py-20 bg-primary-200/15 relative overflow-hidden">
+    <section id="trayectoria" className="bg-primary-200/15 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-secondary-500 mb-6">
-            Mi Trayectoria
-          </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+        <button 
+          className="w-full py-8 cursor-pointer group"
+          onClick={toggleSection}
+        >
+          <div className="flex items-center justify-center gap-4">
+            <h2 className="text-4xl lg:text-5xl font-bold text-secondary-500">
+              Mi Trayectoria
+            </h2>
+            <ChevronDown 
+              className={`w-8 h-8 text-secondary-500 transition-transform duration-300 ${
+                isExpanded ? 'rotate-180' : ''
+              }`}
+            />
+          </div>
+          <p className="text-xl text-neutral-600 max-w-3xl mx-auto text-center mt-4">
             Una vida dedicada al servicio público, la defensa de los derechos humanos 
             y la construcción de una sociedad más justa e inclusiva.
           </p>
-        </div>
+        </button>
+        
+        <div 
+          className={`transition-all duration-500 overflow-hidden ${
+            isExpanded ? 'max-h-[2000px] opacity-100 py-12' : 'max-h-0 opacity-0 py-0'
+          }`}
+          aria-expanded={isExpanded}
+        >
+          <div className="relative">
+            {/* Línea de tiempo vertical */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary-200 to-accent-200 h-full"></div>
+            
+            <div className="space-y-12">
+              {timelineEvents.map((event, index) => {
+                const IconComponent = event.icon;
+                const isLeft = index % 2 === 0;
+                
+                return (
+                  <div key={event.year} className={`relative flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}>
+                    <div className={`w-5/12 ${isLeft ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
+                      <div className={`inline-flex items-center justify-center w-12 h-12 ${event.color} text-white rounded-full mb-4 ${isLeft ? 'ml-auto' : 'mr-auto'}`}>
+                        <IconComponent className="h-6 w-6" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-secondary-500 mb-2">
+                          {event.title}
+                        </h3>
+                        <p className="text-neutral-600 leading-relaxed">
+                          {event.description}
+                        </p>
+                      </div>
+                    </div>
 
-        <div className="relative">
-          {/* Línea de tiempo vertical */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 bg-gradient-to-b from-primary-200 to-accent-200 h-full"></div>
+                    <div className="absolute left-1/2 transform -translate-x-1/2">
+                      <div className="bg-white border-4 border-primary-200 rounded-full w-20 h-20 flex items-center justify-center shadow-lg">
+                        <span className="text-sm font-bold text-secondary-500 text-center leading-tight px-1">
+                          {event.year}
+                        </span>
+                      </div>
+                    </div>
+
+                    {isLeft && <div className="w-5/12"></div>}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
           
-          <div className="space-y-12">
-            {timelineEvents.map((event, index) => {
-              const IconComponent = event.icon;
-              const isLeft = index % 2 === 0;
-              
-              return (
-                <div key={event.year} className={`relative flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}>
-                  {/* Contenido del evento */}
-                  <div className={`w-5/12 ${isLeft ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                    <div className={`inline-flex items-center justify-center w-12 h-12 ${event.color} text-white rounded-full mb-4 ${isLeft ? 'ml-auto' : 'mr-auto'}`}>
-                      <IconComponent className="h-6 w-6" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-secondary-500 mb-2">
-                      {event.title}
-                    </h3>
-                    <p className="text-neutral-600 leading-relaxed">
-                      {event.description}
-                    </p>
-                  </div>
-
-                  {/* Año en el centro */}
-                  <div className="absolute left-1/2 transform -translate-x-1/2">
-                    <div className="bg-white border-4 border-primary-200 rounded-full w-20 h-20 flex items-center justify-center shadow-lg">
-                      <span className="text-sm font-bold text-secondary-500 text-center leading-tight px-1">
-                        {event.year}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Espacio vacío para el lado derecho */}
-                  {isLeft && <div className="w-5/12"></div>}
+          <div className="mt-16 grid md:grid-cols-2 gap-8">
+            <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 border border-primary-100">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center mr-4">
+                  <Shield className="h-6 w-6" />
                 </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* Información adicional sobre su trabajo actual */}
-        <div className="mt-16 grid md:grid-cols-2 gap-8">
-          <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 border border-primary-100">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-primary-500 text-white rounded-full flex items-center justify-center mr-4">
-                <Shield className="h-6 w-6" />
+                <h3 className="text-xl font-bold text-secondary-500">Comisiones Actuales</h3>
               </div>
-              <h3 className="text-xl font-bold text-secondary-500">Comisiones Actuales</h3>
+              <ul className="space-y-2 text-neutral-600">
+                <li>• Derechos Humanos y Pueblos Originarios</li>
+                <li>• Seguridad Ciudadana</li>
+                <li>• Mujeres y Equidad de Género</li>
+              </ul>
             </div>
-            <ul className="space-y-2 text-neutral-600">
-              <li>• Derechos Humanos y Pueblos Originarios</li>
-              <li>• Seguridad Ciudadana</li>
-              <li>• Mujeres y Equidad de Género</li>
-            </ul>
-          </div>
 
-          <div className="bg-gradient-to-r from-accent-50 to-primary-50 rounded-2xl p-8 border border-accent-100">
-            <div className="flex items-center mb-4">
-              <div className="w-12 h-12 bg-accent-500 text-white rounded-full flex items-center justify-center mr-4">
-                <Star className="h-6 w-6" />
+            <div className="bg-gradient-to-r from-accent-50 to-primary-50 rounded-2xl p-8 border border-accent-100">
+              <div className="flex items-center mb-4">
+                <div className="w-12 h-12 bg-accent-500 text-white rounded-full flex items-center justify-center mr-4">
+                  <Star className="h-6 w-6" />
+                </div>
+                <h3 className="text-xl font-bold text-secondary-500">Logros Destacados</h3>
               </div>
-              <h3 className="text-xl font-bold text-secondary-500">Logros Destacados</h3>
+              <ul className="space-y-2 text-neutral-600">
+                <li>• Primera directora del INDH</li>
+                <li>• Primera subsecretaria de DDHH</li>
+                <li>• Electa con 11.519 votos</li>
+                <li>• Lideresa del Movimiento Unir</li>
+              </ul>
             </div>
-            <ul className="space-y-2 text-neutral-600">
-              <li>• Primera directora del INDH</li>
-              <li>• Primera subsecretaria de DDHH</li>
-              <li>• Electa con 11.519 votos</li>
-              <li>• Lideresa del Movimiento Unir</li>
-            </ul>
           </div>
-        </div>
 
-        {/* CTA al final */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 border border-primary-100">
-            <h3 className="text-2xl font-bold text-secondary-500 mb-4">
-              ¿Te gustaría conocer más sobre mi trabajo?
-            </h3>
-            <p className="text-neutral-600 mb-6">
-              Descubre las iniciativas y proyectos que he impulsado como diputada
-            </p>
-            <a
-              href="#trabajo-legislativo"
-              className="inline-flex items-center justify-center px-8 py-3 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors duration-200"
-            >
-              Ver mi trabajo legislativo
-            </a>
+          <div className="text-center mt-16">
+            <div className="bg-gradient-to-r from-primary-50 to-accent-50 rounded-2xl p-8 border border-primary-100">
+              <h3 className="text-2xl font-bold text-secondary-500 mb-4">
+                ¿Te gustaría conocer más sobre mi trabajo?
+              </h3>
+              <p className="text-neutral-600 mb-6">
+                Descubre las iniciativas y proyectos que he impulsado como diputada
+              </p>
+              <a
+                href="#trabajo-legislativo"
+                className="inline-flex items-center justify-center px-8 py-3 bg-primary-500 text-white font-semibold rounded-full hover:bg-primary-600 transition-colors duration-200"
+              >
+                Ver mi trabajo legislativo
+              </a>
+            </div>
           </div>
         </div>
       </div>

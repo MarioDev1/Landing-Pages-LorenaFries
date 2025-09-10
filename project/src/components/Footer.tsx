@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../assets/Logo.png';
+import FloatingSocialBar from './FloatingSocialBar';
 
 const Footer = () => {
   const footerLinks = [
@@ -34,8 +35,8 @@ const Footer = () => {
   return (
     <footer className="bg-secondary-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Logo section */}
-        <div className="flex justify-center mb-12">
+          {/* Logo y redes sociales */}
+        <div className="flex flex-col items-center mb-12 space-y-6">
           <div className="w-20 h-20">
             <img 
               src={logo} 
@@ -43,9 +44,8 @@ const Footer = () => {
               className="w-full h-full object-contain opacity-90 hover:opacity-100 transition-opacity duration-300"
             />
           </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <FloatingSocialBar className="justify-center" />
+        </div>        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Enlaces de navegación */}
           {footerLinks.map((column, index) => (
             <div key={index} className="space-y-4">

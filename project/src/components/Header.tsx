@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import logo from '../assets/Logo.png';
+import FloatingSocialBar from './FloatingSocialBar';
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -23,8 +24,8 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="flex items-center justify-between h-20">
           {/* Logo y nombre */}
-          <div className="flex items-center space-x-4">
-            <a href="#inicio" className="flex items-center space-x-4 group">
+          <div className="flex items-center">
+            <a href="#inicio" className="flex items-center group">
               <div className="w-24 h-24 p-2 rounded-xl overflow-visible">
                 <img 
                   src={logo} 
@@ -32,30 +33,34 @@ const Header = () => {
                   className="w-full h-full object-contain group-hover:scale-115 transition-transform duration-300 ease-in-out"
                 />
               </div>
-              <div className="hidden sm:block">
-                <h1 className="text-2xl font-bold text-secondary-500 group-hover:text-primary-500 transition-colors duration-300">
-                  Lorena Fries
-                </h1>
-                <p className="text-sm text-accent-500 font-medium">
-                  Diputada Distrito 10
-                </p>
-              </div>
             </a>
           </div>
 
-          {/* Navegación desktop */}
-          <nav className="hidden lg:flex items-center space-x-8">
-            {menuItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="text-neutral-600 hover:text-secondary-500 font-medium transition-colors duration-200 relative group"
-              >
-                {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
-              </a>
-            ))}
-          </nav>
+          {/* Redes sociales versión móvil */}
+          <div className="lg:hidden flex-shrink-0">
+            <FloatingSocialBar className="scale-[0.75] -mx-1" />
+          </div>
+
+          {/* Navegación desktop y redes sociales */}
+          <div className="hidden lg:flex items-center gap-8">
+            <nav className="flex items-center space-x-8">
+              {menuItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="text-neutral-600 hover:text-secondary-500 font-medium transition-colors duration-200 relative group"
+                >
+                  {item.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 group-hover:w-full transition-all duration-300"></span>
+                </a>
+              ))}
+            </nav>
+
+            {/* Barra de redes sociales desktop */}
+            <div className="border-l border-neutral-200 pl-8">
+              <FloatingSocialBar />
+            </div>
+          </div>
 
           {/* Botón de menú móvil */}
           <button

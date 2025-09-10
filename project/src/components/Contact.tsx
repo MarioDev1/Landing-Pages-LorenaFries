@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { Mail, Instagram, Twitter, Facebook, Youtube, Flag, Heart, Users } from 'lucide-react';
-import { trackContactClick, trackSocialMediaClick, trackCampaignSignup } from '../utils/tracking';
+import { Mail, Flag, Heart, Users } from 'lucide-react';
+import { trackContactClick, trackCampaignSignup } from '../utils/tracking';
+import FloatingSocialBar from './FloatingSocialBar';
 import logo from '../assets/Logo.png';
 
 interface FormErrors {
@@ -76,7 +77,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contacto" className="py-20 bg-primary-200/15 relative overflow-hidden">
+    <section id="contacto" className="py-20 bg-gradient-to-bl from-white via-secondary-50/40 to-primary-50/60 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-secondary-500">
@@ -257,53 +258,7 @@ const Contact = () => {
               <h3 className="text-2xl font-bold text-secondary-500 mb-6">
                 Sígueme en redes sociales
               </h3>
-              <div className="flex justify-center space-x-4">
-                <a
-                  href="https://bit.ly/Instagram-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('instagram')}
-                  className="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
-                >
-                  <Instagram className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://bit.ly/X-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('twitter')}
-                  className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
-                >
-                  <Twitter className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://bit.ly/Facebook-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('facebook')}
-                  className="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
-                >
-                  <Facebook className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://bit.ly/YouTube-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('youtube')}
-                  className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-700 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
-                >
-                  <Youtube className="h-6 w-6" />
-                </a>
-                <a
-                  href="https://bit.ly/TikTok-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('tiktok')}
-                  className="w-12 h-12 bg-gradient-to-br from-black to-gray-800 rounded-full flex items-center justify-center text-white hover:scale-110 transition-transform duration-200"
-                >
-                  <span className="text-xl">TikTok</span>
-                </a>
-              </div>
+              <FloatingSocialBar className="justify-center" />
             </div>
 
             {/* Mensaje motivacional */}

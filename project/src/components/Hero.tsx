@@ -1,6 +1,6 @@
 import React from 'react';
-import { ArrowRight, Sparkles, Instagram, Twitter, Facebook, Youtube } from 'lucide-react';
-import { trackCTAClick, trackSocialMediaClick } from '../utils/tracking';
+import { ArrowRight, Sparkles } from 'lucide-react';
+import { trackCTAClick } from '../utils/tracking';
 import lorenaImage from '../assets/Lorena-4.jpg';
 import logo from '../assets/Logo.png';
 
@@ -10,7 +10,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="inicio" className="pt-16 bg-gradient-to-br from-secondary-500 via-secondary-600 to-accent-600 text-white relative overflow-hidden">
+    <section id="inicio" className="pt-20 lg:pt-16 bg-gradient-to-br from-secondary-500 via-secondary-600 to-accent-600 text-white relative overflow-hidden">
       {/* Elementos decorativos modernos */}
       <div className="absolute inset-0 overflow-hidden">
         {/* Efectos de luz */}
@@ -66,14 +66,31 @@ const Hero = () => {
                 <span className="text-primary-300 text-sm font-medium tracking-wider uppercase">Diputada Distrito 10</span>
               </div>
               
-              <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
-                <span className="bg-gradient-to-r from-white via-primary-100 to-white bg-clip-text text-transparent">
-                  Lorena Fries
-                </span>
-                <span className="block text-primary-400 mt-2">Monleón</span>
+              {/* Imagen móvil - Ahora primero para dar más protagonismo */}
+              <div className="block lg:hidden relative mb-6">
+                {/* Efectos decorativos para la imagen */}
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-400/30 to-accent-400/30 rounded-3xl blur-xl"></div>
+                <div className="relative">
+                  <img
+                    src={lorenaImage}
+                    alt="Lorena Fries"
+                    className="w-[85vw] h-[85vw] sm:w-[450px] sm:h-[450px] mx-auto object-cover rounded-3xl shadow-2xl transform hover:scale-[1.02] transition-all duration-500"
+                  />
+                  {/* Overlay sutil para mejorar contraste con el texto */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/40 via-transparent to-transparent rounded-3xl"></div>
+                </div>
+              </div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                <div className="flex flex-wrap items-baseline gap-x-3">
+                  <span className="bg-gradient-to-r from-white via-primary-100 to-white bg-clip-text text-transparent">
+                    Lorena
+                  </span>
+                  <span className="text-primary-400">Fries</span>
+                </div>
               </h1>
               
-              <p className="text-xl text-gray-200 flex items-center gap-2">
+              <p className="text-xl text-gray-200 flex items-center gap-2 mt-4">
                 <Sparkles className="h-5 w-5 text-primary-300 animate-pulse" />
                 Comprometida con el futuro del país
               </p>
@@ -105,92 +122,16 @@ const Hero = () => {
                 Contáctame
               </a>
             </div>
-
-            {/* Redes Sociales */}
-            <div className="mt-8 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="h-px flex-1 bg-white/20"></div>
-                <span className="text-white/80 text-sm font-medium">Sígueme en redes sociales</span>
-                <div className="h-px flex-1 bg-white/20"></div>
-              </div>
-
-              <div className="flex items-center justify-center gap-6">
-                <a
-                  href="https://bit.ly/Instagram-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('instagram')}
-                  className="group relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/30 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                    <Instagram className="w-5 h-5 text-white" />
-                  </div>
-                </a>
-
-                <a
-                  href="https://bit.ly/X-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('twitter')}
-                  className="group relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg blur opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/30 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                    <Twitter className="w-5 h-5 text-white" />
-                  </div>
-                </a>
-
-                <a
-                  href="https://bit.ly/Facebook-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('facebook')}
-                  className="group relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg blur opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/30 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                    <Facebook className="w-5 h-5 text-white" />
-                  </div>
-                </a>
-
-                <a
-                  href="https://bit.ly/YouTube-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('youtube')}
-                  className="group relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 rounded-lg blur opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/30 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                    <Youtube className="w-5 h-5 text-white" />
-                  </div>
-                </a>
-
-                <a
-                  href="https://bit.ly/TikTok-Lore-Fries"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackSocialMediaClick('tiktok')}
-                  className="group relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-gray-700 to-black rounded-lg blur opacity-0 group-hover:opacity-40 transition-opacity duration-300"></div>
-                  <div className="relative flex items-center justify-center w-12 h-12 bg-white/10 backdrop-blur-sm rounded-lg border border-white/10 hover:border-white/30 transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-1">
-                    <span className="text-white font-bold text-sm">TT</span>
-                  </div>
-                </a>
-              </div>
-            </div>
           </div>
 
-          <div className="relative animate-fade-in-up delay-300">
+          <div className="relative hidden lg:block animate-fade-in-up delay-300">
             <div className="relative">
               {/* Marco decorativo moderno */}
               <div className="absolute -inset-4 bg-gradient-to-r from-primary-400/20 to-accent-400/20 rounded-3xl blur-xl"></div>
               <div className="relative aspect-square rounded-3xl bg-gradient-to-br from-primary-200/20 to-accent-200/20 backdrop-blur-md border border-white/30 flex items-center justify-center overflow-hidden shadow-2xl hover:shadow-primary-500/25 transition-all duration-500">
                 <img
                   src={lorenaImage}
-                  alt="Lorena Fries Monleón"
+                  alt="Lorena Fries"
                   className="w-4/5 h-4/5 object-cover rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
                 />
                 

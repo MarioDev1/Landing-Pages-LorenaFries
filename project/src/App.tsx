@@ -7,7 +7,7 @@ import LegislativeWork from './components/LegislativeWork';
 import News from './components/News';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import FloatingSocialBar from './components/FloatingSocialBar';
+
 import { 
   trackPageEngagement, 
   trackSectionView, 
@@ -89,10 +89,9 @@ function App() {
       <About />
       <Timeline />
       <LegislativeWork />
-      <News />
+      {/* <News /> */}
       <Contact />
       <Footer />
-      <FloatingSocialBar />
     </div>
   );
 }

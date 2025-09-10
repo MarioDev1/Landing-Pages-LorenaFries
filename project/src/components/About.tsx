@@ -1,5 +1,9 @@
 import React from 'react';
 import { Heart, Shield, Users, BookOpen, Award, Star } from 'lucide-react';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './About.css';
 
 const About = () => {
   const values = [
@@ -41,8 +45,28 @@ const About = () => {
     }
   ];
 
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    arrows: true,
+    responsive: [
+      {
+        breakpoint: 768, // punto de quiebre para móviles
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      }
+    ]
+  };
+
   return (
-    <section id="quien-soy" className="py-20 bg-primary-200/20 relative overflow-hidden">
+    <section id="quien-soy" className="py-20 bg-gradient-to-br from-secondary-50 via-accent-50/30 to-primary-100 relative overflow-hidden">
       {/* Elementos decorativos de fondo */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-20 left-10 w-64 h-64 bg-primary-100/30 rounded-full blur-3xl animate-pulse"></div>
@@ -51,7 +75,7 @@ const About = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl lg:text-5xl font-bold text-secondary-500 mb-6">
+          <h2 className="text-4xl lg:text-5xl font-title text-secondary-500 mb-6">
             Quién Soy
           </h2>
           <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
@@ -121,31 +145,30 @@ const About = () => {
         </div>
 
         <div className="animate-fade-in-up delay-300">
-          <h3 className="text-3xl font-bold text-secondary-500 text-center mb-12">
+          <h3 className="text-3xl font-title text-secondary-500 text-center mb-12">
             Mis Valores y Principios
           </h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <Slider {...sliderSettings}>
             {values.map((value) => {
               const IconComponent = value.icon;
               return (
-                <div 
-                  key={value.title}
-                  className="group bg-accent-200/30 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover-lift border border-accent-300/20"
-                >
-                  <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300`}>
-                    <IconComponent className="h-8 w-8 text-white" />
+                <div key={value.title} className="px-4">
+                  <div className="group bg-accent-200/30 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-105 hover-lift border border-accent-300/20 flex flex-col items-center text-center">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${value.color} rounded-2xl flex items-center justify-center mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                      <IconComponent className="h-8 w-8 text-white" />
+                    </div>
+                    <h4 className="text-xl font-bold text-secondary-500 mb-4 group-hover:text-primary-600 transition-colors duration-300">
+                      {value.title}
+                    </h4>
+                    <p className="text-neutral-600 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300">
+                      {value.description}
+                    </p>
                   </div>
-                  <h4 className="text-xl font-bold text-secondary-500 mb-4 group-hover:text-primary-600 transition-colors duration-300">
-                    {value.title}
-                  </h4>
-                  <p className="text-neutral-600 leading-relaxed group-hover:text-neutral-700 transition-colors duration-300">
-                    {value.description}
-                  </p>
                 </div>
               );
             })}
-          </div>
+          </Slider>
         </div>
       </div>
     </section>

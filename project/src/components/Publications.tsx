@@ -3,6 +3,9 @@ import { Download, ExternalLink, BookOpen, FileText, Scale } from 'lucide-react'
 import { trackResourceClick, trackExternalLinkClick, trackDownload } from '../utils/tracking';
 
 const Publications = () => {
+  return (
+    <section className="py-20 bg-gradient-to-tr from-primary-50/90 via-secondary-50/30 to-white">
+      <div className="container mx-auto px-4">
   const publications = [
     {
       title: "Manual de Derechos Humanos para Empresas",

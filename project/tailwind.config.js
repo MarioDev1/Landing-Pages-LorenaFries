@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        title: ['Bebas Neue', 'sans-serif'],
       },
       colors: {
         primary: {
