@@ -18,10 +18,9 @@ const Hero = () => {
         <div className="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-accent-200/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/4 w-48 h-48 bg-primary-300/20 rounded-full blur-2xl animate-bounce delay-500"></div>
         
-        {/* Logo decorativo central grande */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] 
-          opacity-[0.08] transform rotate-6 hover:rotate-0 transition-all duration-1000 
-          hover:opacity-10 select-none pointer-events-none">
+        {/* Logo decorativo pequeño superior */}
+        <div className="absolute lg:left-10 left-1/2 -translate-x-1/2 lg:translate-x-0 top-[5%] w-56 h-56 lg:w-72 lg:h-72 opacity-[0.25] lg:opacity-15 -rotate-12 transform hover:rotate-0 
+          transition-all duration-1000 hover:opacity-30 hover:scale-110 select-none">
           <img 
             src={logo} 
             alt="Logo Decorativo" 
@@ -30,20 +29,9 @@ const Hero = () => {
           />
         </div>
 
-        {/* Logo decorativo izquierdo */}
-        <div className="absolute left-10 top-1/3 w-72 h-72 opacity-15 -rotate-12 transform hover:rotate-0 
-          transition-all duration-1000 hover:opacity-20 hover:scale-110 select-none">
-          <img 
-            src={logo} 
-            alt="Logo Decorativo" 
-            className="w-full h-full object-contain filter contrast-150"
-            style={{ mixBlendMode: 'soft-light' }}
-          />
-        </div>
-
-        {/* Logo decorativo derecho */}
-        <div className="absolute -right-10 bottom-1/4 w-96 h-96 opacity-15 rotate-12 transform hover:rotate-0 
-          transition-all duration-1000 hover:opacity-20 hover:scale-110 select-none">
+        {/* Logo decorativo mediano inferior (alineado con el botón de contacto) */}
+        <div className="absolute lg:-right-10 right-1/2 translate-x-1/2 lg:translate-x-0 top-[85%] w-64 h-64 lg:w-96 lg:h-96 opacity-[0.22] lg:opacity-15 rotate-12 transform hover:rotate-0 
+          transition-all duration-1000 hover:opacity-25 hover:scale-110 select-none">
           <img 
             src={logo} 
             alt="Logo Decorativo" 
@@ -81,8 +69,8 @@ const Hero = () => {
                 </div>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
-                <div className="flex flex-wrap items-baseline gap-x-3">
+              <h1 className="text-7xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold leading-tight lg:text-left text-center">
+                <div className="flex flex-nowrap items-baseline gap-x-3 justify-center lg:justify-start">
                   <span className="bg-gradient-to-r from-white via-primary-100 to-white bg-clip-text text-transparent">
                     Lorena
                   </span>
