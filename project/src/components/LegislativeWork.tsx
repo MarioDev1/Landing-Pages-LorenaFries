@@ -145,7 +145,7 @@ const LegislativeWork: React.FC = () => {
             {projects.map((project) => (
               <div key={project.id} className="px-4">
                 <div className={`legislative-card bg-white/80 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl 
-                  transition-all duration-500 ease-in-out transform hover:-translate-y-1 
+                  transition-all duration-500 ease-in-out transform hover:-translate-y-1
                   overflow-hidden border border-primary-100/20
                   ${expandedCard === project.id ? 'ring-2 ring-accent-500/30' : ''}`}
                 >

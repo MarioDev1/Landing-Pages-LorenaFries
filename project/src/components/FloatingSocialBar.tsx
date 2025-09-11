@@ -16,7 +16,7 @@ interface FloatingSocialBarProps {
   variant?: 'default' | 'minimal';
 }
 
-export function FloatingSocialBar({ className = "", variant = 'default' }: FloatingSocialBarProps) {
+const FloatingSocialBar = ({ className = "", variant = 'default' }: FloatingSocialBarProps) => {
   const socialLinks: SocialLink[] = [
     {
       href: "https://bit.ly/Instagram-Lore-Fries",
