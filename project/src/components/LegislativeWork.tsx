@@ -104,11 +104,30 @@ const LegislativeWork: React.FC = () => {
     arrows: true,
     responsive: [
       {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          autoplaySpeed: 3000
+        }
+      },
+      {
         breakpoint: 768,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
           autoplaySpeed: 2000, // 2 segundos para móvil
+          arrows: false // Desactivar flechas en móvil para más espacio
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          autoplaySpeed: 2000,
+          arrows: false,
+          dots: true
         }
       }
     ]

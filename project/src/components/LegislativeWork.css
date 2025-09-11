@@ -48,6 +48,30 @@
     display: flex !important;
 }
 
+/* Estilos específicos para móvil */
+@media (max-width: 768px) {
+    .legislative-slider {
+        padding: 1rem 20px;
+    }
+
+    .legislative-slider .slick-slide {
+        padding: 10px;
+        width: 100% !important;
+    }
+
+    /* Forzar un slide a la vez en móvil */
+    .legislative-slider .slick-slide > div {
+        width: 100% !important;
+        margin: 0 auto;
+    }
+
+    /* Asegurar que solo se muestre un slide */
+    .legislative-slider .slick-list {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+}
+
 .legislative-slider .slick-slide > div {
     height: 100%;
 }
