@@ -1,6 +1,11 @@
 @import "slick-carousel/slick/slick.css";
 @import "slick-carousel/slick/slick-theme.css";
 
+/* Asegurar que los estilos de Slick se apliquen correctamente */
+:root {
+    --slick-slide-width: 100%;
+}
+
 /* Estilos para el contenedor principal del trabajo legislativo */
 .legislative-work-container {
     position: relative;
@@ -51,24 +56,40 @@
 /* Estilos específicos para móvil */
 @media (max-width: 768px) {
     .legislative-slider {
-        padding: 1rem 20px;
+        padding: 1rem 0;
+        max-width: 100%;
+        overflow: hidden;
     }
 
     .legislative-slider .slick-slide {
-        padding: 10px;
+        padding: 0;
         width: 100% !important;
+        box-sizing: border-box;
     }
 
     /* Forzar un slide a la vez en móvil */
     .legislative-slider .slick-slide > div {
         width: 100% !important;
-        margin: 0 auto;
+        margin: 0;
+        padding: 0 15px;
     }
 
     /* Asegurar que solo se muestre un slide */
     .legislative-slider .slick-list {
         margin: 0 !important;
         padding: 0 !important;
+        overflow: hidden !important;
+    }
+
+    /* Evitar que se muestren otros slides */
+    .legislative-slider .slick-track {
+        width: 100% !important;
+        transform: none !important;
+    }
+
+    /* Ocultar slides adicionales en móvil */
+    .legislative-slider .slick-slide:not(.slick-active) {
+        display: none !important;
     }
 }
 

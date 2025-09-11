@@ -2,12 +2,48 @@ import React, { useState } from 'react';
 import { ChevronDown, ChevronUp, ExternalLink } from 'lucide-react';
 import { trackExternalLinkClick } from '../utils/tracking';
 import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './LegislativeWork.css';
+import './mobile-slider.css';
 
-const LegislativeWork: React.FC = () => {
+interface Settings {
+  slidesToShow: number;
+  slidesToScroll: number;
+  autoplaySpeed: number;
+  arrows: boolean;
+  dots: boolean;
+  infinite?: boolean;
+  centerMode?: boolean;
+}
+
+interface SliderSettings {
+  dots: boolean;
+  infinite: boolean;
+  speed: number;
+  slidesToShow: number;
+  slidesToScroll: number;
+  autoplay: boolean;
+  autoplaySpeed: number;
+  arrows: boolean;
+  responsive: Array<{
+    breakpoint: number;
+    settings: Settings;
+  }>;
+}
+
+interface Project {
+  id: number;
+  title: string;
+  subtitle: string;
+  description: string;
+  link: string;
+}
+
+const LegislativeWork: React.FC = (): React.ReactElement => {
   const [expandedCard, setExpandedCard] = useState<number | null>(null);
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: "Empresas y Derechos Humanos",
@@ -93,35 +129,18 @@ const LegislativeWork: React.FC = () => {
     }
   ];
 
-  const sliderSettings = {
+  const sliderSettings: SliderSettings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
     slidesToScroll: 3,
     autoplay: true,
-    autoplaySpeed: 4000, // 4 segundos para desktop
+    autoplaySpeed: 4000,
     arrows: true,
     responsive: [
       {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 2,
-          autoplaySpeed: 3000
-        }
-      },
-      {
         breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          autoplaySpeed: 2000, // 2 segundos para móvil
-          arrows: false // Desactivar flechas en móvil para más espacio
-        }
-      },
-      {
-        breakpoint: 480,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,

@@ -1,0 +1,56 @@
+.legislative-slider {
+    /* Estilos base existentes */
+}
+
+/* Desktop: 3 slides */
+@media (min-width: 769px) {
+    .legislative-slider .slick-slide {
+        width: 33.333% !important;
+    }
+}
+
+/* Mobile: 1 slide */
+@media (max-width: 768px) {
+    .legislative-slider {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+    }
+
+    .legislative-slider .slick-list {
+        padding: 0 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+    }
+
+    .legislative-slider .slick-track {
+        width: 100% !important;
+        display: flex !important;
+    }
+
+    .legislative-slider .slick-slide {
+        width: 100% !important;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute !important;
+    }
+
+    .legislative-slider .slick-slide.slick-current {
+        opacity: 1;
+        pointer-events: auto;
+        position: relative !important;
+    }
+
+    /* Asegurar que solo se ve un slide */
+    .legislative-slider .slick-slide > div {
+        width: 100% !important;
+        padding: 0 15px;
+    }
+
+    /* Ajustar dots en móvil */
+    .legislative-slider .slick-dots {
+        bottom: -30px;
+        margin: 0;
+        padding: 0;
+    }
+}
