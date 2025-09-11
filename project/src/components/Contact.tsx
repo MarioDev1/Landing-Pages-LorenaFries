@@ -4,6 +4,7 @@ import { Mail, Flag, Heart, Users } from 'lucide-react';
 import { trackContactClick, trackCampaignSignup } from '../utils/tracking';
 import FloatingSocialBar from './FloatingSocialBar';
 import logo from '../assets/Logo.png';
+import contactBg from '../assets/contacto2.jpg';
 
 interface FormErrors {
   name?: string;
@@ -77,21 +78,39 @@ const Contact = () => {
   };
 
   return (
-    <section id="contacto" className="py-20 bg-gradient-to-bl from-white via-secondary-50/40 to-primary-50/60 relative overflow-hidden">
+    <section id="contacto" className="py-20 relative overflow-hidden min-h-[calc(100vh-4rem)] sm:min-h-0">
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-secondary-500/10 to-accent-500/10 z-0"></div>
+      
+      {/* Background image with glass effect */}
+      <div 
+        className="absolute inset-0 before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-br from-white/80 via-white/70 to-transparent"
+        style={{
+          backgroundImage: `url(${contactBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          filter: 'contrast(110%)'
+        }}
+      ></div>
+      
+      {/* Decorative elements */}
+      <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-primary-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl animate-pulse delay-700"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-secondary-500">
+        <div className="text-center mb-8 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-secondary-500 mb-4">
             ¡Únete a la Campaña!
           </h2>
-          <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-neutral-600 max-w-3xl mx-auto">
             Tu apoyo es fundamental para construir un futuro mejor. 
             Suma tu voz y ayúdame a representar los valores que compartimos.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-16 items-start">
           {/* Formulario de campaña */}
-          <div className="bg-gradient-to-br from-primary-50 to-accent-50 p-8 rounded-2xl border border-primary-100">
+          <div className="glass bg-white/80 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/20 shadow-lg hover:shadow-xl transition-all duration-300">
             <div className="text-center mb-6">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-full mb-4">
                 <Flag className="h-8 w-8" />
