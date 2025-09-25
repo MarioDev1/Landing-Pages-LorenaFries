@@ -1,0 +1,21 @@
+{
+  "name": "Lorena Fries Monleón - Diputada Distrito 10",
+  "short_name": "Lorena Fries",
+  "description": "Página oficial de Lorena Fries Monleón, Diputada por el Distrito 10. Comprometida con los derechos humanos, equidad de género y justicia social.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1f2937",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
