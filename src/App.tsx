@@ -5,7 +5,6 @@ import MobileBanner from './components/MobileBanner';
 import About from './components/About';
 import Timeline from './components/Timeline';
 import LegislativeWork from './components/LegislativeWork';
-import News from './components/News';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
