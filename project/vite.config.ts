@@ -1,17 +1,12 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
 
-// https://vitejs.dev/config/
+// Configuración mínima para debugging
 export default defineConfig({
   plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
-  css: {
-    preprocessorOptions: {
-      css: {
-        javascriptEnabled: true,
-      },
-    },
-  },
-});
+  server: {
+    port: 3000, // Cambiar puerto para evitar conflictos
+    host: 'localhost',
+    open: false
+  }
+})

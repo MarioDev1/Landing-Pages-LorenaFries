@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
 import Timeline from './components/Timeline';
 import LegislativeWork from './components/LegislativeWork';
-import News from './components/News';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -20,6 +19,8 @@ function App() {
   useEffect(() => {
     const startTime = Date.now();
     const sectionStartTimes: Record<string, number> = {};
+    const trackedScrollLevels = new Set<number>();
+    let scrollTimeout: number | null = null;
     
     // Tracking de página vista
     trackPageView('Lorena Fries Monleón - Diputada Distrito 10', '/');
@@ -30,21 +31,29 @@ function App() {
       trackPageEngagement('landing_page', timeSpent);
     };
 
-    // Tracking de scroll
+    // Tracking de scroll con throttling CORREGIDO
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = Math.round((scrollTop / docHeight) * 100);
-      
-      // Trackear cada 25% de scroll
-      if (scrollPercent % 25 === 0) {
-        trackScroll(scrollPercent);
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
       }
+      
+      scrollTimeout = setTimeout(() => {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = Math.round((scrollTop / docHeight) * 100);
+        
+        // Trackear cada 25% SOLO UNA VEZ
+        const scrollLevel = Math.floor(scrollPercent / 25) * 25;
+        if (scrollLevel >= 0 && scrollLevel <= 100 && !trackedScrollLevels.has(scrollLevel)) {
+          trackedScrollLevels.add(scrollLevel);
+          trackScroll(scrollLevel);
+        }
+      }, 200); // Throttle más conservador
     };
 
-    // Tracking de visibilidad de secciones
+    // Tracking de secciones
     const observerOptions = {
-      threshold: 0.5, // Sección visible al 50%
+      threshold: 0.5,
       rootMargin: '0px 0px -100px 0px'
     };
 
@@ -55,7 +64,6 @@ function App() {
           sectionStartTimes[sectionName] = Date.now();
           trackSectionView(sectionName);
         } else {
-          // Cuando la sección sale de vista, calcular tiempo
           const sectionName = entry.target.id || 'unknown_section';
           if (sectionStartTimes[sectionName]) {
             const timeSpent = Date.now() - sectionStartTimes[sectionName];
@@ -66,16 +74,19 @@ function App() {
       });
     }, observerOptions);
 
-    // Observar todas las secciones
+    // Observar secciones
     const sections = document.querySelectorAll('section[id]');
     sections.forEach(section => sectionObserver.observe(section));
 
     // Event listeners
     window.addEventListener('beforeunload', handleBeforeUnload);
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Cleanup
     return () => {
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('scroll', handleScroll);
       sectionObserver.disconnect();
@@ -89,7 +100,6 @@ function App() {
       <About />
       <Timeline />
       <LegislativeWork />
-      {/* <News /> */}
       <Contact />
       <Footer />
     </div>

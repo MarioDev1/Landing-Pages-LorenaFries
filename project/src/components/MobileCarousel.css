@@ -1,0 +1,41 @@
+/* MobileCarousel.css - Archivo temporal para resolver error 404 */
+/* Este archivo puede ser removido si no se utiliza */
+
+.mobile-carousel {
+  /* Estilos base para carousel móvil */
+  width: 100%;
+  overflow: hidden;
+}
+
+.mobile-carousel .carousel-container {
+  display: flex;
+  transition: transform 0.3s ease-in-out;
+}
+
+.mobile-carousel .carousel-slide {
+  flex: 0 0 100%;
+  min-height: 200px;
+}
+
+/* Media query para móviles */
+@media (max-width: 768px) {
+  .mobile-carousel {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .mobile-carousel .carousel-slide {
+    padding: 0 15px;
+  }
+}
+
+/* Animaciones básicas */
+.mobile-carousel .fade-in {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.mobile-carousel .fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}

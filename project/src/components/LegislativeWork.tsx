@@ -5,7 +5,6 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './LegislativeWork.css';
-import './mobile-slider.css';
 
 interface Settings {
   slidesToShow: number;

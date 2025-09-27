@@ -1,0 +1,72 @@
+function App() {import Header from './components/Header';import Header from './components/Header';
+
+  console.log('Step 1: Header test', new Date().toLocaleTimeString());
+
+  
+
+  return (
+
+    <div>// PASO 1: Testing Header component// PASO 1: Agregando solo Header
+
+      <h1>PASO 1: Testing Header</h1>
+
+      <p>Comprobando si Header causa recargas...</p>function App() {function App() {
+
+    </div>
+
+  );  console.log('🔥 Step 1: Testing with Header only', new Date().toLocaleTimeString());  console.log('🔥 Step 1: Testing with Header only', new Date().toLocaleTimeString());
+
+}
+
+
+
+export default App;
+  return (  return (
+
+    <div className="min-h-screen bg-white">    <div className="min-h-screen bg-white">
+
+      <Header />      <Header />
+
+      <div className="pt-20 bg-green-500 min-h-screen flex items-center justify-center">      <div className="pt-20 bg-green-500 min-h-screen flex items-center justify-center">
+
+        <div className="text-center">        <div className="text-center">
+
+          <h1 className="text-4xl text-white font-bold">          <h1 className="text-4xl text-white font-bold">
+
+            PASO 1: Header Agregado            PASO 1: Header Agregado
+
+          </h1>          </h1>
+
+          <p className="text-white mt-4">          <p className="text-white mt-4">
+
+            Si no hay recargas, el Header está bien. Continuaremos con el siguiente componente.            Si no hay recargas, el Header está bien. Continuaremos con el siguiente componente.
+
+          </p>          </p>
+
+        </div>        </div>
+
+      </div>      </div>
+
+    </div>    </div>
+
+  );  );
+
+}}ARA DEBUGGING
+
+function App() {
+
+export default App;  console.log('� App rendering - MINIMAL VERSION', new Date().toLocaleTimeString());
+
+  return (
+    <div className="min-h-screen bg-blue-500 flex items-center justify-center">
+      <h1 className="text-4xl text-white font-bold">
+        LANDING PAGE - DEBUGGING MODE
+      </h1>
+      <p className="text-white mt-4">
+        Si ves este mensaje sin errores ni recargas, el problema estaba en los componentes.
+      </p>
+    </div>
+  );
+}
+
+export default App;
